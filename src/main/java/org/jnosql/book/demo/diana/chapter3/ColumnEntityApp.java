@@ -15,6 +15,7 @@ public class ColumnEntityApp {
     public static void main(String[] args) {
 
         ColumnEntity entity = ColumnEntity.of("columnFamily");
+        String name = entity.getName();
         entity.add(Column.of("id", Value.of(10L)));
         entity.add(Column.of("version", 0.001));
         entity.add(Column.of("name", "Diana"));
