@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class DocumentManager {
+public class DocumentManagerExample {
 
     public static void main(String[] args) {
         DocumentEntity entity = DocumentEntity.of("collection");
