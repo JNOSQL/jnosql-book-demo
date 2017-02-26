@@ -1,4 +1,4 @@
-package org.jnosql.book.demo.diana.chaper2;
+package org.jnosql.book.demo.diana.chapter3;
 
 
 import org.jnosql.diana.api.Value;
@@ -22,5 +22,6 @@ public class ColumnEntityApp {
 
         List<Column> columns = entity.getColumns();
         Optional<Column> id = entity.find("id");
+        entity.remove("options");
     }
 }

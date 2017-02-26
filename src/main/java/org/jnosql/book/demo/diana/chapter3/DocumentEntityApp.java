@@ -1,4 +1,4 @@
-package org.jnosql.book.demo.diana.chaper2;
+package org.jnosql.book.demo.diana.chapter3;
 
 import org.jnosql.diana.api.Value;
 import org.jnosql.diana.api.document.Document;
@@ -12,7 +12,8 @@ public class DocumentEntityApp {
 
     public static void main(String[] args) {
 
-        DocumentEntity entity = DocumentEntity.of("columnFamily");
+        DocumentEntity entity = DocumentEntity.of("collection");
+        String name = entity.getName();
         entity.add(Document.of("id", Value.of(10L)));
         entity.add(Document.of("version", 0.001));
         entity.add(Document.of("name", "Diana"));
@@ -20,5 +21,6 @@ public class DocumentEntityApp {
 
         List<Document> documents = entity.getDocuments();
         Optional<Document> id = entity.find("id");
+        entity.remove("options");
     }
 }
