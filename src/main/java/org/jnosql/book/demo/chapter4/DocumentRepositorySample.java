@@ -59,6 +59,12 @@ public class DocumentRepositorySample {
         repositoryAsync.update(person, callback);
         repositoryAsync.update(people);
 
+        Consumer<List<Person>> callBackPeople = p -> {};
+        Consumer<Void> voidCallBack = v ->{};
+        repositoryAsync.find(query, callBackPeople);
+        repositoryAsync.delete(deleteQuery);
+        repositoryAsync.delete(deleteQuery, voidCallBack);
+
     }
 
 }
