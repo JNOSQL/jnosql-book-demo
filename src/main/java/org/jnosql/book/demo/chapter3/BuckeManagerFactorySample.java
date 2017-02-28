@@ -1,4 +1,4 @@
-package org.jnosql.book.demo.diana.chapter3;
+package org.jnosql.book.demo.chapter3;
 
 
 import org.jnosql.diana.api.Value;

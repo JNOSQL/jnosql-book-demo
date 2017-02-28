@@ -1,4 +1,4 @@
-package org.jnosql.book.demo.diana.chaper2;
+package org.jnosql.book.demo.chaper2;
 
 
 import org.jnosql.diana.api.ValueWriter;
