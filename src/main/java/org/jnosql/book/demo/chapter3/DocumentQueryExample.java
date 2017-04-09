@@ -29,8 +29,8 @@ public class DocumentQueryExample {
         query.and(ageBiggerTen);
         query.addSort(Sort.of("name", Sort.SortType.ASC));
 
-        query.setLimit(10);
-        query.setStart(2);
+        query.withMaxResults(10);
+        query.withFirstResult(2);
 
         List<DocumentEntity> entities = manager.find(query);
         Optional<DocumentEntity> entity = manager.singleResult(query);

@@ -13,17 +13,31 @@
         <maven.compile.version>3.5.1</maven.compile.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>apache-m2-snapshot</id>
+            <name>Apache Snapshot Repository</name>
+            <url>https://repository.apache.org/content/groups/snapshots</url>
+        </repository>
+        <repository>
+            <id>jnsoql-repo</id>
+            <name>JNoSQL Maven Repository</name>
+            <url>https://dl.bintray.com/jnosql/maven/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+
 
     <dependencies>
         <dependency>
             <groupId>org.jnosql.diana</groupId>
             <artifactId>diana-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.2-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.jnosql.artemis</groupId>
             <artifactId>artemis-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.2-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>javax.enterprise</groupId>
