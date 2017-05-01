@@ -1,9 +1,9 @@
 package org.jnosql.book.demo.chapter4;
 
-import org.jnosql.artemis.CrudRepository;
-import org.jnosql.artemis.CrudRepositoryAsync;
 import org.jnosql.artemis.Database;
 import org.jnosql.artemis.DatabaseType;
+import org.jnosql.artemis.Repository;
+import org.jnosql.artemis.RepositoryAsync;
 
 import javax.inject.Inject;
 import java.time.Duration;
@@ -73,7 +73,7 @@ public class CrudRepositorySample {
     @Database(DatabaseType.COLUMN)
     private PersonRepositoryAsync columnRepositoryAsync;
 
-    interface PersonRepository extends CrudRepository<Person> {
+    interface PersonRepository extends Repository<Person> {
 
         List<Person> findByAddress(String address);
 
@@ -86,7 +86,7 @@ public class CrudRepositorySample {
         void deleteByNickName(String nickname);
     }
 
-    interface PersonRepositoryAsync extends CrudRepositoryAsync<Person> {
+    interface PersonRepositoryAsync extends RepositoryAsync<Person> {
         void findByNickname(String nickname, Consumer<List<Person>> callback);
 
         void deleteByNickName(String nickname);

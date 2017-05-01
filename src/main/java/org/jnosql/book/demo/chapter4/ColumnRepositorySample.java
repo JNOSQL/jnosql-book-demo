@@ -1,8 +1,8 @@
 package org.jnosql.book.demo.chapter4;
 
 
-import org.jnosql.artemis.column.ColumnRepository;
-import org.jnosql.artemis.column.ColumnRepositoryAsync;
+import org.jnosql.artemis.column.ColumnTemplate;
+import org.jnosql.artemis.column.ColumnTemplateAsync;
 import org.jnosql.diana.api.column.Column;
 import org.jnosql.diana.api.column.ColumnCondition;
 import org.jnosql.diana.api.column.ColumnDeleteQuery;
@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 public class ColumnRepositorySample {
 
     public static void main(String[] args) {
-        ColumnRepository repository = null;
+        ColumnTemplate template = null;
 
 
 
@@ -30,40 +30,40 @@ public class ColumnRepositorySample {
 
         List<Person> people = Collections.singletonList(person);
 
-        Person personUpdated = repository.save(person);
-        repository.save(people);
-        repository.save(person, Duration.ofHours(1L));
+        Person personUpdated = template.save(person);
+        template.save(people);
+        template.save(person, Duration.ofHours(1L));
 
-        repository.update(person);
-        repository.update(people);
+        template.update(person);
+        template.update(people);
 
         ColumnQuery query = ColumnQuery.of("Person");
         query.and(ColumnCondition.eq(Column.of("address", "Olympus")));
 
-        List<Person> peopleWhoLiveOnOlympus = repository.find(query);
-        Optional<Person> artemis = repository.singleResult(ColumnQuery.of("Person")
+        List<Person> peopleWhoLiveOnOlympus = template.find(query);
+        Optional<Person> artemis = template.singleResult(ColumnQuery.of("Person")
                 .and(ColumnCondition.eq(Column.of("nickname", "artemis"))));
 
         ColumnDeleteQuery deleteQuery = query.toDeleteQuery();
-        repository.delete(deleteQuery);
+        template.delete(deleteQuery);
 
 
-        ColumnRepositoryAsync repositoryAsync = null;
+        ColumnTemplateAsync templateAsync = null;
         Consumer<Person> callback = p -> {};
-        repositoryAsync.save(person);
-        repositoryAsync.save(person, Duration.ofHours(1L));
-        repositoryAsync.save(person, callback);
-        repositoryAsync.save(people);
+        templateAsync.save(person);
+        templateAsync.save(person, Duration.ofHours(1L));
+        templateAsync.save(person, callback);
+        templateAsync.save(people);
 
-        repositoryAsync.update(person);
-        repositoryAsync.update(person, callback);
-        repositoryAsync.update(people);
+        templateAsync.update(person);
+        templateAsync.update(person, callback);
+        templateAsync.update(people);
 
         Consumer<List<Person>> callBackPeople = p -> {};
         Consumer<Void> voidCallBack = v ->{};
-        repositoryAsync.find(query, callBackPeople);
-        repositoryAsync.delete(deleteQuery);
-        repositoryAsync.delete(deleteQuery, voidCallBack);
+        templateAsync.find(query, callBackPeople);
+        templateAsync.delete(deleteQuery);
+        templateAsync.delete(deleteQuery, voidCallBack);
 
     }
 

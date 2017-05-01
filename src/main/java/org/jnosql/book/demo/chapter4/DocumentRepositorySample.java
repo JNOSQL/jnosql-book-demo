@@ -1,8 +1,8 @@
 package org.jnosql.book.demo.chapter4;
 
 
-import org.jnosql.artemis.document.DocumentRepository;
-import org.jnosql.artemis.document.DocumentRepositoryAsync;
+import org.jnosql.artemis.document.DocumentTemplate;
+import org.jnosql.artemis.document.DocumentTemplateAsync;
 import org.jnosql.diana.api.document.Document;
 import org.jnosql.diana.api.document.DocumentCondition;
 import org.jnosql.diana.api.document.DocumentDeleteQuery;
@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 public class DocumentRepositorySample {
 
     public static void main(String[] args) {
-        DocumentRepository repository = null;
+        DocumentTemplate template = null;
 
 
 
@@ -30,40 +30,40 @@ public class DocumentRepositorySample {
 
         List<Person> people = Collections.singletonList(person);
 
-        Person personUpdated = repository.save(person);
-        repository.save(people);
-        repository.save(person, Duration.ofHours(1L));
+        Person personUpdated = template.save(person);
+        template.save(people);
+        template.save(person, Duration.ofHours(1L));
 
-        repository.update(person);
-        repository.update(people);
+        template.update(person);
+        template.update(people);
 
         DocumentQuery query = DocumentQuery.of("Person");
         query.and(DocumentCondition.eq(Document.of("address", "Olympus")));
 
-        List<Person> peopleWhoLiveOnOlympus = repository.find(query);
-        Optional<Person> artemis = repository.singleResult(DocumentQuery.of("Person")
+        List<Person> peopleWhoLiveOnOlympus = template.find(query);
+        Optional<Person> artemis = template.singleResult(DocumentQuery.of("Person")
                 .and(DocumentCondition.eq(Document.of("nickname", "artemis"))));
 
         DocumentDeleteQuery deleteQuery = query.toDeleteQuery();
-        repository.delete(deleteQuery);
+        template.delete(deleteQuery);
 
 
-        DocumentRepositoryAsync repositoryAsync = null;
+        DocumentTemplateAsync templateAsync = null;
         Consumer<Person> callback = p -> {};
-        repositoryAsync.save(person);
-        repositoryAsync.save(person, Duration.ofHours(1L));
-        repositoryAsync.save(person, callback);
-        repositoryAsync.save(people);
+        templateAsync.save(person);
+        templateAsync.save(person, Duration.ofHours(1L));
+        templateAsync.save(person, callback);
+        templateAsync.save(people);
 
-        repositoryAsync.update(person);
-        repositoryAsync.update(person, callback);
-        repositoryAsync.update(people);
+        templateAsync.update(person);
+        templateAsync.update(person, callback);
+        templateAsync.update(people);
 
         Consumer<List<Person>> callBackPeople = p -> {};
         Consumer<Void> voidCallBack = v ->{};
-        repositoryAsync.find(query, callBackPeople);
-        repositoryAsync.delete(deleteQuery);
-        repositoryAsync.delete(deleteQuery, voidCallBack);
+        templateAsync.find(query, callBackPeople);
+        templateAsync.delete(deleteQuery);
+        templateAsync.delete(deleteQuery, voidCallBack);
 
     }
 
