@@ -38,19 +38,19 @@ public class DocumentManagerExample {
 
         DocumentCollectionManagerAsync managerAsync = null;
 
-        //saves operations
-        manager.save(entity);
-        manager.save(entity, Duration.ofHours(2L));//saves with 2 hours of TTL
-        manager.save(entities, Duration.ofHours(2L));//saves with 2 hours of TTL
+        //insert operations
+        manager.insert(entity);
+        manager.insert(entity, Duration.ofHours(2L));//saves with 2 hours of TTL
+        manager.insert(entities, Duration.ofHours(2L));//saves with 2 hours of TTL
         //updates operations
         manager.update(entity);
         manager.update(entities);
 
 
-        //saves operations
-        managerAsync.save(entity);
-        managerAsync.save(entity, Duration.ofHours(2L));//saves with 2 hours of TTL
-        managerAsync.save(entities, Duration.ofHours(2L));//saves with 2 hours of TTL
+        //insert operations
+        managerAsync.insert(entity);
+        managerAsync.insert(entity, Duration.ofHours(2L));//saves with 2 hours of TTL
+        managerAsync.insert(entities, Duration.ofHours(2L));//saves with 2 hours of TTL
         //updates operations
         managerAsync.update(entity);
         managerAsync.update(entities);
@@ -58,7 +58,7 @@ public class DocumentManagerExample {
         //callback
         Consumer<DocumentEntity> callBack = e -> {
         };
-        managerAsync.save(entity, callBack);
+        managerAsync.insert(entity, callBack);
         managerAsync.update(entity, callBack);
 
     }

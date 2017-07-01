@@ -21,7 +21,6 @@ import org.jnosql.artemis.Repository;
 import org.jnosql.artemis.RepositoryAsync;
 
 import javax.inject.Inject;
-import java.time.Duration;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -47,10 +46,6 @@ public class CrudRepositorySample {
 
         repository.save(person);
         repository.save(people);
-        repository.save(people, Duration.ofHours(2));
-        repository.update(person);
-        repository.update(people);
-        repository.update(people);
 
 
         Stream<Person> dianas = repository.findByName("Diana");
@@ -58,14 +53,6 @@ public class CrudRepositorySample {
 
         repositoryAsync.save(person);
         repositoryAsync.save(people);
-        repositoryAsync.save(person, p -> {
-        });
-        repositoryAsync.save(people, Duration.ofHours(2));
-        repositoryAsync.update(person);
-        repositoryAsync.update(person, p -> {
-        });
-        repositoryAsync.update(people);
-        repositoryAsync.update(people);
 
 
     }
@@ -88,7 +75,7 @@ public class CrudRepositorySample {
     @Database(DatabaseType.COLUMN)
     private PersonRepositoryAsync columnRepositoryAsync;
 
-    interface PersonRepository extends Repository<Person> {
+    interface PersonRepository extends Repository<Person, String> {
 
         List<Person> findByAddress(String address);
 
@@ -101,7 +88,7 @@ public class CrudRepositorySample {
         void deleteByNickName(String nickname);
     }
 
-    interface PersonRepositoryAsync extends RepositoryAsync<Person> {
+    interface PersonRepositoryAsync extends RepositoryAsync<Person, String> {
         void findByNickname(String nickname, Consumer<List<Person>> callback);
 
         void deleteByNickName(String nickname);

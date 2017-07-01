@@ -47,10 +47,10 @@ public class DocumentQueryExample {
         query.withMaxResults(10);
         query.withFirstResult(2);
 
-        List<DocumentEntity> entities = manager.find(query);
+        List<DocumentEntity> entities = manager.select(query);
         Optional<DocumentEntity> entity = manager.singleResult(query);
 
         Consumer<List<DocumentEntity>> callback = e -> {};
-        managerAsync.find(query, callback);
+        managerAsync.select(query, callback);
     }
 }

@@ -47,10 +47,10 @@ public class ColumnQueryExample {
         query.withMaxResults(10);
         query.withFirstResult(2);
 
-        List<ColumnEntity> entities = manager.find(query);
+        List<ColumnEntity> entities = manager.select(query);
         Optional<ColumnEntity> entity = manager.singleResult(query);
 
         Consumer<List<ColumnEntity>> callback = e -> {};
-        managerAsync.find(query, callback);
+        managerAsync.select(query, callback);
     }
 }
