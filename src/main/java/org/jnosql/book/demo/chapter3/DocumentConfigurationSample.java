@@ -37,4 +37,6 @@ public class DocumentConfigurationSample {
         DocumentCollectionManagerAsyncFactory managerAsyncFactory1 = unaryDocumentConfiguration.getAsync();
 
     }
+
+    private DocumentConfigurationSample() {}
 }

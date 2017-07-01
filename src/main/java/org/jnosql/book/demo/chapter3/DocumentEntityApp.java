@@ -38,4 +38,6 @@ public class DocumentEntityApp {
         Optional<Document> id = entity.find("id");
         entity.remove("options");
     }
+
+    private DocumentEntityApp() {}
 }

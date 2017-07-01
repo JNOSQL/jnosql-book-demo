@@ -25,4 +25,6 @@ public class KeyValueConfigurationSample {
         KeyValueConfiguration configuration = null;
         BucketManagerFactory managerFactory = configuration.get();
     }
+
+    private KeyValueConfigurationSample() {}
 }

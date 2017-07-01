@@ -46,4 +46,6 @@ public class BuckeManagerSample {
         bucketManager.remove(Collections.singletonList("key"));
 
     }
+
+    private BuckeManagerSample() {}
 }

@@ -40,4 +40,6 @@ public class ColumnEntityApp {
         Optional<Column> id = entity.find("id");
         entity.remove("options");
     }
+
+    private ColumnEntityApp() {}
 }

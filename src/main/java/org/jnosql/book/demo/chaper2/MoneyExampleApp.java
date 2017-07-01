@@ -30,4 +30,6 @@ public class MoneyExampleApp {
         List<Money> list = value.get(new TypeReference<List<Money>>() {});
         Set<Money> set = value.get(new TypeReference<Set<Money>>() {});;
     }
+
+    private MoneyExampleApp() {}
 }

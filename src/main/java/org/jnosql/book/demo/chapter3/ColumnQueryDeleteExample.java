@@ -40,4 +40,6 @@ public class ColumnQueryDeleteExample {
         managerAsync.delete(query);
         managerAsync.delete(query, v -> {});
     }
+
+    private ColumnQueryDeleteExample() {}
 }

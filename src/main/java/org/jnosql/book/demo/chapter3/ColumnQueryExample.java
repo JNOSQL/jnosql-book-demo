@@ -53,4 +53,6 @@ public class ColumnQueryExample {
         Consumer<List<ColumnEntity>> callback = e -> {};
         managerAsync.select(query, callback);
     }
+
+    private ColumnQueryExample() {}
 }

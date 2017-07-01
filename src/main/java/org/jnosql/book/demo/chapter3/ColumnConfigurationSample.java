@@ -38,4 +38,6 @@ public class ColumnConfigurationSample {
         ColumnFamilyManagerAsyncFactory managerAsyncFactory1 = unaryDocumentConfiguration.getAsync();
 
     }
+
+    private ColumnConfigurationSample() {}
 }

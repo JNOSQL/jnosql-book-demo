@@ -40,4 +40,6 @@ public class DocumentQueryDeleteExample {
         managerAsync.delete(query);
         managerAsync.delete(query, v -> {});
     }
+
+    private DocumentQueryDeleteExample() {}
 }

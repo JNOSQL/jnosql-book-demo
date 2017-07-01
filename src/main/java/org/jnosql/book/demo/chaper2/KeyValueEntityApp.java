@@ -29,4 +29,6 @@ public class KeyValueEntityApp {
         Integer integer = entity.get(Integer.class);
 
     }
+
+    private KeyValueEntityApp() {}
 }

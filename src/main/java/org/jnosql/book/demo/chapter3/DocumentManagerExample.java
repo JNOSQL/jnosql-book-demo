@@ -62,4 +62,6 @@ public class DocumentManagerExample {
         managerAsync.update(entity, callBack);
 
     }
+
+    private DocumentManagerExample() {}
 }

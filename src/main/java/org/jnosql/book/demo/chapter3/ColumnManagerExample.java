@@ -20,10 +20,6 @@ import org.jnosql.diana.api.column.Column;
 import org.jnosql.diana.api.column.ColumnEntity;
 import org.jnosql.diana.api.column.ColumnFamilyManager;
 import org.jnosql.diana.api.column.ColumnFamilyManagerAsync;
-import org.jnosql.diana.api.document.Document;
-import org.jnosql.diana.api.document.DocumentCollectionManager;
-import org.jnosql.diana.api.document.DocumentCollectionManagerAsync;
-import org.jnosql.diana.api.document.DocumentEntity;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -66,4 +62,6 @@ public class ColumnManagerExample {
         managerAsync.update(entity, callBack);
 
     }
+
+    private ColumnManagerExample() {}
 }

@@ -53,4 +53,6 @@ public class DocumentQueryExample {
         Consumer<List<DocumentEntity>> callback = e -> {};
         managerAsync.select(query, callback);
     }
+
+    private DocumentQueryExample() {}
 }

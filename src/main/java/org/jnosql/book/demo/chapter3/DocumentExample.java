@@ -37,6 +37,7 @@ public class DocumentExample {
         List<Integer> ages = age.get(new TypeReference<List<Integer>>() {});
         Object ageObject = age.get();
 
-
     }
+
+    private DocumentExample() {}
 }
