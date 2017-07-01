@@ -13,6 +13,12 @@
         <maven.compile.version>3.5.1</maven.compile.version>
     </properties>
 
+    <parent>
+        <groupId>org.jnosql</groupId>
+        <artifactId>jnosql-parent</artifactId>
+        <version>0.0.2</version>
+    </parent>
+
     <repositories>
         <repository>
             <id>apache-m2-snapshot</id>
@@ -32,12 +38,12 @@
         <dependency>
             <groupId>org.jnosql.diana</groupId>
             <artifactId>diana-api</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jnosql.artemis</groupId>
             <artifactId>artemis-core</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.enterprise</groupId>
