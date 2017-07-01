@@ -39,4 +39,6 @@ public class KeyValueRepositorySample {
         Iterable<Person> usersFound = template.get(Collections.singletonList("ada"), Person.class);
 
     }
+
+    private KeyValueRepositorySample() {}
 }

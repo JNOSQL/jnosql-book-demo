@@ -37,6 +37,7 @@ public class KeyValueRepositoryValue {
 
     }
 
-
+    private KeyValueRepositoryValue() {
+    }
 }
 

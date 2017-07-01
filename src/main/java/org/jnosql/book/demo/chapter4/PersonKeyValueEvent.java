@@ -18,10 +18,6 @@ package org.jnosql.book.demo.chapter4;
 
 import org.jnosql.artemis.EntityPostPersit;
 import org.jnosql.artemis.EntityPrePersist;
-import org.jnosql.artemis.column.ColumnEntityPostPersist;
-import org.jnosql.artemis.column.ColumnEntityPrePersist;
-import org.jnosql.artemis.column.EntityColumnPostPersist;
-import org.jnosql.artemis.column.EntityColumnPrePersist;
 import org.jnosql.artemis.key.EntityKeyValuePostPersist;
 import org.jnosql.artemis.key.EntityKeyValuePrePersist;
 import org.jnosql.artemis.key.KeyValueEntityPostPersist;

@@ -22,10 +22,6 @@ import org.jnosql.artemis.column.ColumnEntityPostPersist;
 import org.jnosql.artemis.column.ColumnEntityPrePersist;
 import org.jnosql.artemis.column.EntityColumnPostPersist;
 import org.jnosql.artemis.column.EntityColumnPrePersist;
-import org.jnosql.artemis.document.DocumentEntityPostPersist;
-import org.jnosql.artemis.document.DocumentEntityPrePersist;
-import org.jnosql.artemis.document.EntityDocumentPostPersist;
-import org.jnosql.artemis.document.EntityDocumentPrePersist;
 
 import javax.enterprise.event.Observes;
 import java.util.logging.Logger;

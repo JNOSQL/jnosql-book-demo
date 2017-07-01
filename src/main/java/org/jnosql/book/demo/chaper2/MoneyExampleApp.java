@@ -16,11 +16,11 @@
 package org.jnosql.book.demo.chaper2;
 
 
-import java.util.List;
-import java.util.Set;
-
 import org.jnosql.diana.api.TypeReference;
 import org.jnosql.diana.api.Value;
+
+import java.util.List;
+import java.util.Set;
 
 public class MoneyExampleApp {
 
@@ -28,7 +28,7 @@ public class MoneyExampleApp {
         Value value = Value.of("BRL 10.0");
         Money money = value.get(Money.class);
         List<Money> list = value.get(new TypeReference<List<Money>>() {});
-        Set<Money> set = value.get(new TypeReference<Set<Money>>() {});;
+        Set<Money> set = value.get(new TypeReference<Set<Money>>() {});
     }
 
     private MoneyExampleApp() {}

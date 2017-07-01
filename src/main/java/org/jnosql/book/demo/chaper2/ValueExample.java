@@ -34,4 +34,6 @@ public class ValueExample {
         Stream<Integer> stream = value.get(new TypeReference<Stream<Integer>>() {});
         Object integer = value.get();
     }
+
+    private ValueExample() {}
 }

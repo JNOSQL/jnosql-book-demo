@@ -57,6 +57,8 @@ public class CrudRepositorySample {
 
     }
 
+    private CrudRepositorySample() {}
+
 
     @Inject
     @Database(DatabaseType.DOCUMENT)
