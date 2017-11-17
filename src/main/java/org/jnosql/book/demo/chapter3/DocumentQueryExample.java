@@ -23,10 +23,13 @@ import org.jnosql.diana.api.document.DocumentCollectionManagerAsync;
 import org.jnosql.diana.api.document.DocumentCondition;
 import org.jnosql.diana.api.document.DocumentEntity;
 import org.jnosql.diana.api.document.DocumentQuery;
+import org.jnosql.diana.api.document.query.DocumentQueryBuilder;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
+
+import static org.jnosql.diana.api.Sort.SortType.ASC;
 
 public class DocumentQueryExample {
 
@@ -39,13 +42,9 @@ public class DocumentQueryExample {
         DocumentCollectionManager manager = null;
         DocumentCollectionManagerAsync managerAsync = null;
 
-        DocumentQuery query = DocumentQuery.of("collection");
-        DocumentCondition ageBiggerTen = DocumentCondition.gt(Document.of("age", 10));
-        query.and(ageBiggerTen);
-        query.addSort(Sort.of("name", Sort.SortType.ASC));
-
-        query.withMaxResults(10);
-        query.withFirstResult(2);
+        DocumentQuery query = DocumentQueryBuilder.select().from("collection").where("age")
+                .lt(10).and("name").eq("Ada").
+                        orderBy(Sort.of("name", ASC)).limit(10).start(2).build();
 
         List<DocumentEntity> entities = manager.select(query);
         Optional<DocumentEntity> entity = manager.singleResult(query);

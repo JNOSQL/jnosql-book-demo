@@ -16,11 +16,10 @@
 package org.jnosql.book.demo.chapter3;
 
 
-import org.jnosql.diana.api.document.Document;
 import org.jnosql.diana.api.document.DocumentCollectionManager;
 import org.jnosql.diana.api.document.DocumentCollectionManagerAsync;
-import org.jnosql.diana.api.document.DocumentCondition;
 import org.jnosql.diana.api.document.DocumentDeleteQuery;
+import org.jnosql.diana.api.document.query.DocumentQueryBuilder;
 
 public class DocumentQueryDeleteExample {
 
@@ -30,16 +29,17 @@ public class DocumentQueryDeleteExample {
         DocumentCollectionManager manager = null;
         DocumentCollectionManagerAsync managerAsync = null;
 
-        DocumentDeleteQuery query = DocumentDeleteQuery.of("collection");
-        DocumentCondition ageBiggerTen = DocumentCondition.gt(Document.of("age", 10));
-        query.and(ageBiggerTen);
+        DocumentDeleteQuery query = DocumentQueryBuilder.delete().from("collection").where("age").gt(10)
+                .build();
 
 
         manager.delete(query);
 
         managerAsync.delete(query);
-        managerAsync.delete(query, v -> {});
+        managerAsync.delete(query, v -> {
+        });
     }
 
-    private DocumentQueryDeleteExample() {}
+    private DocumentQueryDeleteExample() {
+    }
 }
