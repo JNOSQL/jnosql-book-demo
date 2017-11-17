@@ -18,8 +18,6 @@ package org.jnosql.book.demo.chapter4;
 
 import org.jnosql.artemis.column.ColumnTemplate;
 import org.jnosql.artemis.column.ColumnTemplateAsync;
-import org.jnosql.diana.api.column.Column;
-import org.jnosql.diana.api.column.ColumnCondition;
 import org.jnosql.diana.api.column.ColumnDeleteQuery;
 import org.jnosql.diana.api.column.ColumnQuery;
 
@@ -30,11 +28,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+import static org.jnosql.diana.api.column.query.ColumnQueryBuilder.delete;
+import static org.jnosql.diana.api.column.query.ColumnQueryBuilder.select;
+
 public class ColumnRepositorySample {
 
     public static void main(String[] args) {
         ColumnTemplate template = null;
-
 
 
         Person person = new Person();
@@ -52,19 +52,25 @@ public class ColumnRepositorySample {
         template.update(person);
         template.update(people);
 
-        ColumnQuery query = ColumnQuery.of("Person");
-        query.and(ColumnCondition.eq(Column.of("address", "Olympus")));
+        ColumnQuery query = select().from("Person")
+                .where("address")
+                .eq("Olympus").build();
+
 
         List<Person> peopleWhoLiveOnOlympus = template.select(query);
-        Optional<Person> artemis = template.singleResult(ColumnQuery.of("Person")
-                .and(ColumnCondition.eq(Column.of("nickname", "artemis"))));
+        Optional<Person> artemis = template.singleResult(select().from("Person")
+                .where("nickname")
+                .eq("artemis").build());
 
-        ColumnDeleteQuery deleteQuery = query.toDeleteQuery();
+        ColumnDeleteQuery deleteQuery = delete().from("Person")
+                .where("address")
+                .eq("Olympus").build();
         template.delete(deleteQuery);
 
 
         ColumnTemplateAsync templateAsync = null;
-        Consumer<Person> callback = p -> {};
+        Consumer<Person> callback = p -> {
+        };
         templateAsync.insert(person);
         templateAsync.insert(person, Duration.ofHours(1L));
         templateAsync.insert(person, callback);
@@ -74,14 +80,17 @@ public class ColumnRepositorySample {
         templateAsync.update(person, callback);
         templateAsync.update(people);
 
-        Consumer<List<Person>> callBackPeople = p -> {};
-        Consumer<Void> voidCallBack = v ->{};
+        Consumer<List<Person>> callBackPeople = p -> {
+        };
+        Consumer<Void> voidCallBack = v -> {
+        };
         templateAsync.select(query, callBackPeople);
         templateAsync.delete(deleteQuery);
         templateAsync.delete(deleteQuery, voidCallBack);
 
     }
 
-    private ColumnRepositorySample() {}
+    private ColumnRepositorySample() {
+    }
 
 }

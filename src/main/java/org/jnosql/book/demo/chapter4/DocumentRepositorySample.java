@@ -22,6 +22,7 @@ import org.jnosql.diana.api.document.Document;
 import org.jnosql.diana.api.document.DocumentCondition;
 import org.jnosql.diana.api.document.DocumentDeleteQuery;
 import org.jnosql.diana.api.document.DocumentQuery;
+import org.jnosql.diana.api.document.query.DocumentQueryBuilder;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -29,6 +30,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
+
+import static org.jnosql.diana.api.document.query.DocumentQueryBuilder.delete;
+import static org.jnosql.diana.api.document.query.DocumentQueryBuilder.select;
 
 public class DocumentRepositorySample {
 
@@ -52,14 +56,16 @@ public class DocumentRepositorySample {
         template.update(person);
         template.update(people);
 
-        DocumentQuery query = DocumentQuery.of("Person");
-        query.and(DocumentCondition.eq(Document.of("address", "Olympus")));
+
+        DocumentQuery query = select().from("Person").where("address").eq("Olympus").build();
+
 
         List<Person> peopleWhoLiveOnOlympus = template.select(query);
-        Optional<Person> artemis = template.singleResult(DocumentQuery.of("Person")
-                .and(DocumentCondition.eq(Document.of("nickname", "artemis"))));
+        Optional<Person> artemis = template.singleResult(select().from("Person")
+                .where("nickname").eq("artemis").build());
 
-        DocumentDeleteQuery deleteQuery = query.toDeleteQuery();
+
+        DocumentDeleteQuery deleteQuery = delete().from("Person").where("address").eq("Olympus").build();
         template.delete(deleteQuery);
 
 
