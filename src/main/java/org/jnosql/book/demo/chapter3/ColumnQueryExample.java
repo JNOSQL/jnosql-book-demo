@@ -23,10 +23,13 @@ import org.jnosql.diana.api.column.ColumnEntity;
 import org.jnosql.diana.api.column.ColumnFamilyManager;
 import org.jnosql.diana.api.column.ColumnFamilyManagerAsync;
 import org.jnosql.diana.api.column.ColumnQuery;
+import org.jnosql.diana.api.column.query.ColumnQueryBuilder;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
+
+import static org.jnosql.diana.api.Sort.SortType.ASC;
 
 public class ColumnQueryExample {
 
@@ -39,13 +42,10 @@ public class ColumnQueryExample {
         ColumnFamilyManager manager = null;
         ColumnFamilyManagerAsync managerAsync = null;
 
-        ColumnQuery query = ColumnQuery.of("collection");
-        ColumnCondition ageBiggerTen = ColumnCondition.gt(Column.of("age", 10));
-        query.and(ageBiggerTen);
-        query.addSort(Sort.of("name", Sort.SortType.ASC));
 
-        query.withMaxResults(10);
-        query.withFirstResult(2);
+        ColumnQuery query = ColumnQueryBuilder.select().from("collection").where("age")
+                .lt(10).and("name").eq("Ada").
+                        orderBy(Sort.of("name", ASC)).limit(10).start(2).build();
 
         List<ColumnEntity> entities = manager.select(query);
         Optional<ColumnEntity> entity = manager.singleResult(query);

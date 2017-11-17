@@ -21,6 +21,7 @@ import org.jnosql.diana.api.column.ColumnCondition;
 import org.jnosql.diana.api.column.ColumnDeleteQuery;
 import org.jnosql.diana.api.column.ColumnFamilyManager;
 import org.jnosql.diana.api.column.ColumnFamilyManagerAsync;
+import org.jnosql.diana.api.column.query.ColumnQueryBuilder;
 
 public class ColumnQueryDeleteExample {
 
@@ -30,9 +31,8 @@ public class ColumnQueryDeleteExample {
         ColumnFamilyManager manager = null;
         ColumnFamilyManagerAsync managerAsync = null;
 
-        ColumnDeleteQuery query = ColumnDeleteQuery.of("collection");
-        ColumnCondition ageBiggerTen = ColumnCondition.gt(Column.of("age", 10));
-        query.and(ageBiggerTen);
+        ColumnDeleteQuery query = ColumnQueryBuilder.delete()
+                .from("collection").where("age").gt(10).build();
 
 
         manager.delete(query);
