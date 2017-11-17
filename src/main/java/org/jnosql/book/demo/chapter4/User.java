@@ -16,13 +16,10 @@
 package org.jnosql.book.demo.chapter4;
 
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.jnosql.artemis.Entity;
 import org.jnosql.artemis.Id;
 
 import java.util.Objects;
-
-import static org.apache.commons.lang3.builder.ToStringStyle.SHORT_PREFIX_STYLE;
 
 @Entity
 public class User {
@@ -85,10 +82,11 @@ public class User {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, SHORT_PREFIX_STYLE)
-                .append("nickname", nickname)
-                .append("name", name)
-                .append("age", age)
-                .toString();
+        final StringBuilder sb = new StringBuilder("User{");
+        sb.append("nickname='").append(nickname).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", age=").append(age);
+        sb.append('}');
+        return sb.toString();
     }
 }
